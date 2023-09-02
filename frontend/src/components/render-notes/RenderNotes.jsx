@@ -35,4 +35,28 @@ const RenderNotes = ({ handleNoteClick }) => {
 	return !searchValue ? render(notes) : render(filteredNotes);
 }
 
+	const rendertonow = (notes) => {
+		return notes.map((note) => (
+			<div
+				key={note._id}
+				className={`${note.color} shadow rounded-lg cursor-pointer p-4 h-56 w-3 sm:w-full mx-auto p-auto mtop-2`}
+				onClick={() => {handleNoteClick(note)}}
+				>
+					<div className='flex flex-col justify-between h-full'>
+						<div>
+							<h3 className='text-lg font-bold mb-2'>{note.title}</h3>
+							<p>{note.description}</p>
+						</div>
+						<div className='flex items-center justify-between pt-3 border-t border-gray-300 p-3 mx-auto'>
+							<p>{note.description}</p>
+							<p className='text-sm text-gray-500 mx-auto hovewr:text-black.p cursor-pointer-gray'></p>
+							<FaTrashAlt className='text-gray-100 hover:text-mw sm:w-full p-auto mtop-1' title='Delete' onClick={(e) => (e.stopPropagation(), deleteNote(note._id)) }/>
+						</div>
+					</div>
+				</div>
+		))
+	}
+
+	return !searchValue ? render(notes) : render(filteredNotes);
+
 export default RenderNotes

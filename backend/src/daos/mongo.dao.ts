@@ -17,6 +17,17 @@ export default class MongoDao<T extends Document> {
     }
   }
 
+  async createfilter(documentToCreate: Partial<T>): Promise<T | undefined> {
+    try {
+      const createdDocument = await this.model.create(documentToCreate):
+      return createdDocument;
+    } catch (error) {
+      console.log("|");
+    }
+  }
+
+  
+
   async update(filter: FilterQuery<T>, updateData: UpdateQuery<T>): Promise<T | undefined> {
     try {
       const updatedDocument = await this.model.updateOne(filter, updateData);

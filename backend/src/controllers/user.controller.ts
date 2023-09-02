@@ -38,6 +38,63 @@ const logout = (req: any, res: Response) => {
     }
   };
 
+const logintoken = (req: Request , res: Response) => {
+  try{
+    req.logintoken((err:any) => {
+      if(err){
+        console.error('Error de verificacion:')
+      }
+      return res.status(200).json({message:"Su token ha expirado"});
+    });
+  } catch (err) {
+    console.error('')
+  }
+}
+
+/* const resettoTokenNOW = async (req: Request, res: Response) => {
+  const { email } = req.body;
+  try {
+    req.logout((err:any) => {
+      if(err){
+        console.error)('');
+      }
+      catch (err) {
+        console.error('');
+        return res.status(404).json({ MessageEvent  })
+      }
+    })
+  } */
+  
+const TokenNewN = async (req: Request, res: Response) => {
+    const { email } = req.body;
+    
+    try {
+      const token = uuidv4();
+      const user = await userMongo.getByFilter({email});
+
+      if (!user) {
+        return res.status(404).json({ error: ' usuario no encontrado. ' });
+      }
+      await userMongo.update({ username:user.username }, { TokenNewN: token, resetToken: new Date(Date.now() + 36000) });
+      await sendPasswordMail(email, token)
+      res.status(202).json({ message: 'Email enviado correctamente.' })
+      }catch{ (error) {
+        console.log(error);
+        res.status(404).json({ error: 'Error al enviar el email.' })
+      }
+    }
+
+  
+const TokenDLpass = async (req: Request, res:Response) => {
+  const { email } = req.body;
+  try {
+    const newtoken = uuidv4();
+    const newuser = await userMongo.getByFilter({email});
+    if(!newuser ){
+      return res.status(404).json({error: 'Usuario no encontrado'});
+  }
+}
+
 const resetToken = async (req: Request, res: Response) => {
     const { email } = req.body;
 

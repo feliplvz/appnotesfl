@@ -39,7 +39,7 @@ export const sendUserMail = async (
 			</ul>
 			<p>Te recomiendo mantener estos datos en un lugar seguro y no compartir tu contraseña con nadie.</p>
 			<p>Atentamente,</p>
-			<strong><p>Mariano López</p></strong>`,
+			<strong><p>Felipe López</p></strong>`,
     };
     const info = await transporter.sendMail(mailOptions);
     console.log(info);
