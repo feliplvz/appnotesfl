@@ -25,5 +25,3 @@ Se trata de una aplicación Fullstack que utiliza Typescript, Express y MongoDB 
 - React-router-dom
 - Sweetalert2
 
-Deploy del proyecto:
-https://app-notes-pi.vercel.app/
